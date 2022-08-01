@@ -1,0 +1,36 @@
+{%- for block in section.blocks -%}
+   {%- case block.type -%}
+   {%- when 'rebuy' -%}
+      {%- if block.settings.widget_id -%}
+         <div data-rebuy-id="{{ block.settings.widget_id }}"{% if block.settings.enable_product_ids %} data-rebuy-shopify-product-ids="{{ product.id }}"{% endif %}{% if block.settings.enable_collection_ids %} data-rebuy-shopify-collection-ids="{{ collection.id }}"{% endif %}widget_id={{ block.settings.widget_id }}</div>
+      {%- endif -%}
+    {%- endcase -%}
+{%- endfor -%}
+
+{% schema %}
+  {
+    "name": "Rebuy Widgets",
+	"blocks": [{
+        "type": "rebuy",
+        "name": "Rebuy Widget",
+        "settings": [
+          {
+            "type": "text",
+            "id": "widget_id",
+            "label": "Widget ID",
+			"info": "Click here to learn how to find your widget id [https://rebuyengine.com]"
+          },
+		  {
+            "type": "checkbox",
+            "id": "enable_product_ids",
+            "label": "Enable Product IDs"
+          },
+		  {
+            "type": "checkbox",
+            "id": "enable_collection_ids",
+            "label": "Enable Collection IDs"
+          }
+        ]
+    }]
+  }
+{% endschema %}
